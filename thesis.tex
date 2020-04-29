@@ -1,0 +1,162 @@
+\documentclass[a4paper,14pt]{extreport} % ext for 14 font
+
+\usepackage{cmap}                   % search in PDF
+\usepackage[T2A]{fontenc}           % pfd encoding
+\usepackage[utf8]{inputenc}         % source encoding
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+\usepackage{graphicx}
+\usepackage{geometry}
+	\geometry{left=2cm}
+	\geometry{right=1cm}
+	\geometry{top=2cm}
+	\geometry{bottom=2cm}
+
+\usepackage{setspace}
+	\onehalfspacing
+
+\usepackage{tempora} % font
+
+\setlength{\parindent}{1.25cm} % paragraph indent
+\usepackage{indentfirst}
+\setlength{\parskip}{0cm} % paragraph skip
+
+\usepackage{multicol}
+\usepackage{tabularx}
+
+\usepackage{caption}
+\DeclareCaptionFont{captionsize}{\fontsize{13}{15.6}\selectfont}
+\captionsetup{
+	font=captionsize,
+	justification=centering,
+	labelsep=period,
+	figurewithin=none,
+	tablewithin=none
+}
+\captionsetup[table]{
+	justification=RaggedLeft,
+	singlelinecheck=false,
+	labelsep=newline
+}
+
+\begin{document}
+	\thispagestyle{empty}
+	\newgeometry{left=2cm,right=2cm,top=1.25cm,bottom=1.25cm}
+	\begin{center}
+		\small
+		ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ \\ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\ 
+		«НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ \\ 
+		«ВЫСШАЯ ШКОЛА ЭКОНОМИКИ» \\
+			
+		\vspace{5mm}
+		
+		МОСКОВСКИЙ ИНСТИТУТ ЭЛЕКТРОНИКИ И МАТЕМАТИКИ \\
+		им. А.Н. ТИХОНОВА
+		
+		\normalsize
+		\vspace{12mm}
+		
+		Юндин Владислав Андреевич
+		
+		\vspace{12mm}
+		
+		\textbf{РАЗРАБОТКА СИСТЕМЫ КОНТРОЛЯ И УПРАВЛЕНИЯ ЭНЕРГОПОТРЕБЛЕНИЕМ ЭЛЕМЕНТОВ ГРАФИЧЕСКОГО ИНТЕРФЕЙСА НА МОБИЛЬНЫХ УСТРОЙСТВАХ}
+		
+		\vspace{8mm}
+		
+		Выпускная квалификационная работа по направлению подготовки \\ 
+		09.03.01. Информатика и вычислительная техника \\
+		студента образовательной программы \\
+		<<Информатика и вычислительная техника>>
+	\end{center}
+
+	\vspace{10mm}
+
+	\begin{multicols}{2}
+		\noindent
+		\textbf{Студент}
+		
+		\vspace{4mm}
+		
+		\noindent
+		\begin{tabularx}{\linewidth}{Xc}
+			& / В.А. Юндин \\
+			\hline
+		\end{tabularx}
+		
+		\columnbreak
+		
+		\noindent
+		\textbf{Руководитель}
+		
+		\vspace{4mm}
+		
+		\noindent
+		\begin{tabularx}{\linewidth}{c}
+			должность, звание, А.Ю. Ролич \\
+			\hline
+		\end{tabularx}
+	
+		\vspace{8mm}
+	
+		\noindent
+		\textbf{Консультант}
+		
+		\vspace{4mm}
+		
+		\noindent
+		\begin{tabularx}{\linewidth}{c}
+			должность, звание, И.О. Фамилия \\
+			\hline
+		\end{tabularx}
+	
+		\vspace{8mm}
+		
+		\noindent
+		\textbf{Рецензент}
+		
+		\vspace{4mm}
+		
+		\noindent
+		\begin{tabularx}{\linewidth}{c}
+			должность, звание, И.О. Фамилия \\
+			\hline
+		\end{tabularx}
+	\end{multicols}
+
+	\vfill
+	\begin{center}Москва, 2020\end{center}
+
+	\restoregeometry
+	\newpage
+	
+	\chapter{Chapter}
+	
+	\section{Section}
+	
+	Первый
+	
+	Второй
+	
+	\subsection{Subsection}
+	
+	\subsubsection{Subsubsection}
+	
+	\paragraph{Paragraph}
+	
+	\subparagraph{Subparagraph}
+	
+	Text
+	\begin{table}[h]
+		\captionsetup{width=0.95\linewidth}%
+		\caption{C Caption on Right Caption on Right Caption on Right Caption on Right Caption on Right Caption on Right}%
+		\begin{tabular}{|c|c|c|}
+			\hline
+			asd & asd & asd \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\captionof{figure}{Asd kaef }
+	\thetable
+\end{document}
