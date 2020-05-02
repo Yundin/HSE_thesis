@@ -1,9 +1,15 @@
+%!TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = ru-RU
+% !BIB program = biber
+
 \documentclass[a4paper,14pt]{extreport} % ext for 14 font
 
-\usepackage{cmap}                   % search in PDF
-\usepackage[T2A]{fontenc}           % pfd encoding
-\usepackage[utf8]{inputenc}         % source encoding
 \usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+\setmainfont{Comic Sans MS}
+%\usepackage{tempora} % font for not xelatex
 
 \usepackage{graphicx}
 \usepackage{geometry}
@@ -14,8 +20,6 @@
 
 \usepackage{setspace}
 	\onehalfspacing
-
-\usepackage{tempora} % font
 
 \setlength{\parindent}{1.25cm} % paragraph indent
 \usepackage{indentfirst}
