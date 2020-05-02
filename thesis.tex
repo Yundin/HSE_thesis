@@ -5,48 +5,7 @@
 
 \documentclass[a4paper,14pt]{extreport} % ext for 14 font
 
-\usepackage[english,russian]{babel}	% локализация и переносы
-\usepackage{fontspec}
-%\setmainfont{Times New Roman}
-\setmainfont{Comic Sans MS}
-%\usepackage{tempora} % font for not xelatex
-
-\usepackage{graphicx}
-\usepackage{geometry}
-	\geometry{left=2cm}
-	\geometry{right=1cm}
-	\geometry{top=2cm}
-	\geometry{bottom=2cm}
-
-\usepackage{setspace}
-	\onehalfspacing
-
-\setlength{\parindent}{1.25cm} % paragraph indent
-\usepackage{indentfirst}
-\setlength{\parskip}{0cm} % paragraph skip
-
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{tabularx}
-
-\usepackage{caption}
-\DeclareCaptionFont{captionsize}{\fontsize{13}{15.6}\selectfont}
-\captionsetup{
-	font=captionsize,
-	justification=centering,
-	labelsep=period,
-	figurewithin=none,
-	tablewithin=none,
-	margin=1cm
-}
-\captionsetup[table]{
-	justification=RaggedLeft,
-	singlelinecheck=false,
-	labelsep=newline,
-	margin=0cm,
-	skip=4pt
-}
-\usepackage{makecell}
+\input{preamble}
 
 \begin{document}
 	\thispagestyle{empty}
