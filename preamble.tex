@@ -2,8 +2,11 @@
 
 \usepackage[english,russian]{babel}	% локализация и переносы
 \usepackage{fontspec}
-%\setmainfont{Times New Roman}
-\setmainfont{Comic Sans MS}
+\ifbool{comicsans}{
+	\setmainfont{Comic Sans MS}
+}{
+	\setmainfont{Times New Roman}
+}
 %\usepackage{tempora} % font for not xelatex
 
 \usepackage{graphicx}
