@@ -9,6 +9,13 @@
 }
 %\usepackage{tempora} % font for not xelatex
 
+%\tolerance=1
+%\emergencystretch=\maxdimen
+%\hyphenpenalty=10000
+%\hbadness=10000
+\hyphenchar\font=-1
+\sloppy
+
 \usepackage{graphicx}
 \usepackage{geometry}
 	\geometry{left=2cm}
@@ -22,6 +29,9 @@
 \setlength{\parindent}{1.25cm} % paragraph indent
 \usepackage{indentfirst}
 \setlength{\parskip}{0cm} % paragraph skip
+\usepackage{titlesec}
+\titlespacing*{\section}{\parindent}{*1}{*1}
+\titlespacing*{\subsection}{\parindent}{*1}{*1}
 
 \usepackage{multicol}
 \usepackage{multirow}
@@ -31,12 +41,16 @@
 \newcommand{\titlefont}{\fontsize{18}{21.6}\bfseries}
 \usepackage{titlesec}
 \titleformat*{\section}{\titlefont}
+\titleformat*{\subsection}{\titlefont}
 \newcommand{\centertitle}[1]{
+	\setlength\parskip{0pt}
 	\begin{center}
+		\setlength\parskip{1ex}
 		{\titlefont #1}
 	\end{center}
 }
 \newcommand{\centertitletoc}[1]{
+	\setlength\parskip{0pt}
 	\begin{center}
 		{\titlefont #1}
 		\addcontentsline{toc}{section}{#1}
