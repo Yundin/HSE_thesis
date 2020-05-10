@@ -2,4 +2,5 @@
 *.gz
 *.aux
 *.pdf
+*.toc
 .DS_Store
