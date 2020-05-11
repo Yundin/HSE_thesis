@@ -51,13 +51,13 @@
 	\setlength\parskip{0pt}
 	\begin{center}
 		\setlength\parskip{1ex}
-		{\titlefont #1}
+		{\titlefont \uppercase{#1}}
 	\end{center}
 }
 \newcommand{\centertitletoc}[1]{
 	\setlength\parskip{0pt}
 	\begin{center}
-		{\titlefont #1}
+		{\titlefont \uppercase{#1}}
 		\addcontentsline{toc}{section}{#1}
 	\end{center}
 }
@@ -79,3 +79,9 @@
 	margin=0cm,
 	skip=4pt
 }
+
+\usepackage{tocloft} % toc style
+\setlength{\cftsecnumwidth}{0pt}
+\renewcommand{\cftsecaftersnumb}{\hspace{1.5em}}
+
+\newcommand{\ris}[1]{(рис.~#1)}
