@@ -58,6 +58,7 @@
 	\setlength\parskip{0pt}
 	\begin{center}
 		{\titlefont \uppercase{#1}}
+		\phantomsection
 		\addcontentsline{toc}{section}{#1}
 	\end{center}
 }
@@ -85,3 +86,20 @@
 \renewcommand{\cftsecaftersnumb}{\hspace{1.5em}}
 
 \newcommand{\ris}[1]{(рис.~#1)}
+
+\usepackage[
+	backend=biber,
+	sorting=none,
+	style=gost-numeric
+]{biblatex}
+\addbibresource{mendeley.bib}
+
+\usepackage{hyperref}
+\hypersetup{				% Гиперссылки
+	unicode=true,           % русские буквы в разделах PDF
+	pdftitle={Разработка системы контроля и управления энергопотреблением элементов графического интерфейса на мобильных устройствах},   % Заголовок
+	pdfauthor={Юндин Владислав},      % Автор
+	colorlinks=true,       	% false: ссылки в рамках; true: цветные ссылки
+	linkcolor=black,          % внутренние ссылки
+	citecolor=black,        % на библиографию
+}
