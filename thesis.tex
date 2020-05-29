@@ -13,8 +13,7 @@
 
 \begin{document}
 	\include{title_page}
-	\centertitle{Задание на ВКР}
-	\centertitle{График выполнения ВКР}
+	\includepdf[pages=-]{tz.pdf}
 	\centertitle{Аннотация на русском языке}
 	\centertitle{Аннотация на английском языке}
 	
@@ -245,11 +244,11 @@
 	
 	На первом этапе фильтрации нужно оставить только информацию, которая относится к тестируемому приложению. 
 	
-	\subsubsection{batterystats}
+	\subsubsection{Служба batterystats}
 	
 	Для службы \textbf{batterystats} это строка с нужным Uid из подраздела \textbf{Estimated power use (mAh)}, а также подраздел с общей статистикой по Uid. Для фильтрации этой информации на языке Python был написан скрипт \textbf{filter\_bat.py}. Скрипт принимает в качестве аргументов командной строки имена файлов, которые ему требуется отфильтровать. Отфильтрованные версии файлов помещаются в директорию \textbf{batt\_results\_filtered/}, которую создаёт скрипт.
 	
-	\subsubsection{cpuinfo}
+	\subsubsection{Служба cpuinfo}
 	
 	Из службы \textbf{cpuinfo} понадобятся такие строки, которые отражают данные для промежутка времени, в которое производится тестирование, и содержат информацию по Uid тестируемого приложения. Также понадобятся сами строки с датами, так как временные промежутке в файле не равные. Для фильтрации данных на языке Python был написан скрипт \textbf{filter\_cpu.py}. Он так же принимает в качестве аргументов командной строки имена файлов, которые ему требуется отфильтровать, а результат помещает в созданную директорию \textbf{cpu\_results\_filtered}.
 
@@ -277,7 +276,7 @@
 	
 	Используемый метод получения данных от операционной системы не лишён недостатков. Стоит их рассмотреть.
 	
-	\subsubsection{Статистика за всё время}
+	\subsubsection{Сброс статистики}
 	
 	Как уже упоминалось, служба Battery Historian предоставляет только суммарные данные за время с последней полной зарядки устройства, что мешает получать данные по конкретному виджету. Такое поведение обусловлено тем, что именно в таком формате предоставляет данные служба \textbf{batteryststs}, анализ которой будет производится и в этой работе.
 	
@@ -320,7 +319,7 @@
 	
 	Было решено использовать только те виджеты, которые могут быть отображены без взаимодействия с другими виджетами, следовательно, могут быть измерены отдельно от всего остального. В противном случае, было бы необходимо измерять виджеты во всех возможных условиях, а это бы в разы увеличило время проведения тестов.
 	
-	Для составления списка элементов был взят список всех сущностей в пакете android.widget в Android SDK Platform (29 API). После этого из списка были исключены следующие сущности:
+	Для составления списка элементов был взят список всех сущностей пакета android.widget в Android 10 SDK Platform (\hyperref[appendix]{Приложение}). После этого из списка были исключены следующие сущности:
 	\begin{itemize}
 		\item deprecated классы, так как они не рекомендуются к использованию разработчиками ОС и в будущих версиях могут быть удалены;
 		\item интерфейсы и классы-адаптеры, так как они не являются виджетами;
@@ -330,7 +329,37 @@
 		\item наследники представлений, задачей которых является позиционирование других представлений, добавленных к текущему.
 	\end{itemize}
 	
-	После этого остался список самостоятельных элементов, которые можно независимо тестировать.
+	После этого остался список самостоятельных элементов, которые можно независимо тестировать:
+	\begin{itemize}
+		\item AutoCompleteTextView
+		\item Button
+		\item CalendarView
+		\item CheckBox
+		 \item CheckedTextView
+		 \item Chronometer
+		 \item DatePicker
+		 \item EditText
+		 \item ImageButton
+		 \item ImageSwitcher
+		 \item ImageView
+		 \item MultiAutoCompleteTextView
+		 \item NumberPicker
+		 \item ProgressBar 
+		 \item RadioButton
+		 \item RatingBar
+		 \item SearchView
+		 \item SeekBar
+		 \item Space
+		 \item Switch
+		 \item TextClock
+		 \item TextSwitcher
+		 \item TextView
+		 \item TimePicker
+		 \item ToggleButton
+		 \item VideoView
+		 \item View
+		
+	\end{itemize}
 	
 	\clearpage
 	\section{Измерение одного виджета}
@@ -457,7 +486,7 @@
 	\end{figure}
 
 	\clearpage
-	\section{Постобработка результатов тестирования}
+	\section{Постобработка результатов измерений}
 	
 	В ходе сравнения результатов измерений в разных условиях было обнаружено, что тестируемое приложение не отображается в логах службы \textbf{cpuinfo}. Это может быть связано с низкими значениями затрат процессорного времени. Информация этой службы в будущем использована не будет.
 	
@@ -522,6 +551,14 @@
 		\item Adviser --- абстракция с методом, который ищет оптимальный элемент, подобный заданному. Может возникнуть необходимость делать это асинхронно, так как поиск будет связан с работой с базой данных, поэтому метод findAlternativeAsync помимо имени класса элемента принимает callback, через который будет возвращён результат.
 		\item RecommendationOutputter --- абстракция с методом output, принимающим оригинальный элемент интерфейса и строку с описанием альтернативы.
 	\end{itemize}
+
+	Отношения между описанными частями представлена на рис.~\ref{fig:uml_interfaces}.
+
+	\begin{figure}[htb]
+		\includegraphics[width=\textwidth]{uml_interfaces}
+		\caption{Структурная диаграмма библиотеки}
+		\label{fig:uml_interfaces}
+	\end{figure}
 	
 	\subsection{Язык программирования и  инструментальные средства}
 	
@@ -600,10 +637,37 @@
 	
 	В методе init класса UIManager создаются конкретные реализации Adviser и RecommendationOutputter, передавая их в конструктор конкретного HierarchyAnalyzer. Затем на объекте приложения вызывается registerActivityLifecycleCallbacks, а в реализации Application.ActivityLifecycleCallbacks при приобретении какой-либо Activity состояния Started, с помощью метода getActivityRoot находится корень его иерархии и передаётся в метод analyzeDynamicHierarchy созданного ранее HierarchyAnalyzer.
 	
-	\newpage
-	\section{Демонстрация работы / Методики и результаты экспериментального исследования макета и/или опытного образца и/или программного продукта}
+	Итоговая библиотека имеет структуру, представленную на рис~\ref{fig:uml}.
 	
-	\textbf{\Huge TODO}
+	\begin{figure}[htb]
+		\includegraphics[width=\textwidth]{uml}
+		\caption{Диаграмма классов библиотеки}
+		\label{fig:uml}
+	\end{figure}
+	
+	\newpage
+	\section{Итоги работы}
+	
+	Весь исходный код проекта, а также необработанные результаты всех проведённых измерений были опубликованы на GitHub~\parencite{GitHub}.
+	
+	Для демонстрации работы библиотеки в проект был добавлен модуль example. Модуль содержит приложение, способное динамически добавлять на экран объект класса \textbf{android.app.Fragment} с наполнением, объект класса \textbf{androidx.fragment.app.Fragment} с наполнением, объекты класса \textbf{TextView}, а также открывать новое Activity~\ris{\ref{fig:example}}. К проекту подключена библиотека из модуля hierarchy-checker и в методе onCreate наследника класса Application у объекта UIManager был вызван метод init, в который был передан контекст приложения.
+	
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[width=0.45\textwidth]{example}
+		\caption{Интерфейс приложения из модуля example}
+		\label{fig:example}
+	\end{figure}
+	
+	Так как главный экран приложения уже содержит кнопки и текстовые поля, сразу после открытия приложения в логах устройства появляются советы по оптимизации открывшегося экрана~\ris{\ref{fig:example_log}}.
+	
+	\begin{figure}[htb]
+		\includegraphics[width=\textwidth]{example_log}
+		\caption{Логи устройства после открытия приложения из модуля example}
+		\label{fig:example_log}
+	\end{figure}
+
+	При нажатии кнопок на экран добавляются новые виджеты или открывается новый экран. При этом библиотека находит новые виджеты в иерархии и сразу после их отображения выводит в логи устройства советы по оптимизации, если их удалось найти в базе данных.
 	
 	\newpage
 	\centertitletoc{Заключение}
@@ -613,19 +677,51 @@
 	\newpage
 	\centertitletoc{Дальнейшие исследования}
 	
+	Вывод в приложения,
 	Можно добавить клики, можно добавить перерисовку виджета, вызовом метода invalidate.
+	Можно измерять сторонним оборудованием.
 	
 	\textbf{\Huge TODO}
 	
 	\newpage
-	\centertitletoc{Краткий глоссарий, представляющий определение ключевых понятий и терминов работы}
+	\centertitletoc{Глоссарий}
 	
-	\textbf{\Huge TODO}
+	База данных --- организованная структура, которая используется для хранения, обработки и изменения взаимосвязанной информации.
+	
+	Библиотека --- набор ресурсов, используемых для разработки программного обеспечения.
+	
+	Виджет --- элемент графического интерфейса, используемый на экране приложения.
+	
+	Фреймворк автоматического тестирования --- программное обеспечение, позволяющее создавать тесты для автоматизированного тестирования приложения. Частные случаи: appium, espresso, kakao, kaspresso.
+	
+	Activity --- компонент приложения, имеющий графический интерфейс, и позволяющий пользователю с ним взаимодействовать.
+	
+	Android --- мобильная операционная система с открытым исходным кодом.
+	
+	Android Debug Bridge --- инструмент командной строки, позволяющий взаимодействовать с устройством.
+	
+	Android Profiler --- инструмент, предоставляющий данные о потребляемых приложением ресурсах устройства в реальном времени.
+	
+	Battery Historian --- инструмент анализа и визуализации расхода батареи устройства на основании отчётов операционной системы.
+	
+	BroadcastReceiver --- компонент приложения, позволяющий принимать и обрабатывать системные события.
+	
+	Uid --- пользовательский идентификатор в Unix-подобных операционных системах, он уникален для каждого приложения и по нему можно отслеживать потребление.
 
 	\newpage
 	\centertitletoc{Перечень сокращений, условных обозначений, символов и терминов}
 	
-	\textbf{\Huge TODO}
+	Автотест --- тест для автоматизированного тестирования приложения.
+	
+	мс --- миллисекунд.
+	
+	ОС --- операционная система.
+	
+	adb --- Android Debug Bridge.
+	
+	mAh --- миллиампер-час.
+	
+	zsh --- Z shell.
 	
 	\newpage
 	\centertitletoc{Список использованных источников}
@@ -633,7 +729,117 @@
 	\printbibliography[heading=none]
 	
 	\newpage
-	\centertitletoc{Приложения}
-	
-	\textbf{\Huge TODO}
+	\begin{flushright}
+		\phantomsection
+		\addcontentsline{toc}{section}{Список сущностей пакета android.widget в Android 10 SDK Platform}
+		\label{appendix}
+		Приложение\par
+		Список сущностей пакета android.widget в Android 10 SDK Platform
+	\end{flushright}
+
+	\begin{itemize}
+        \item AbsListView
+        \item AbsoluteLayout
+        \item AbsSeekBar
+        \item AbsSpinner
+        \item ActionMenuView
+        \item Adapter
+        \item AdapterView
+        \item AdapterViewAnimator
+        \item AdapterViewFlipper
+        \item Advanceable
+        \item AlphabetIndexer
+        \item AnalogClock
+        \item ArrayAdapter
+        \item AutoCompleteTextView
+        \item BaseAdapter
+        \item BaseExpandableListAdapter
+        \item Button
+        \item CalendarView
+        \item Checkable
+        \item CheckBox
+        \item CheckedTextView
+        \item Chronometer
+        \item CompoundButton
+        \item CursorAdapter
+        \item CursorTreeAdapter
+        \item DatePicker
+        \item DialerFilter
+        \item DigitalClock
+        \item EdgeEffect
+        \item EditText
+        \item ExpandableListAdapter
+        \item ExpandableListView
+        \item Filter
+        \item Filterable
+        \item FilterQueryProvider
+        \item FrameLayout
+        \item Gallery
+        \item GridLayout
+        \item GridView
+        \item HeaderViewListAdapter
+        \item HeterogeneousExpandableList
+        \item HorizontalScrollView
+        \item ImageButton
+        \item ImageSwitcher
+        \item ImageView
+        \item LinearLayout
+        \item ListAdapter
+        \item ListPopupWindow
+        \item ListView
+        \item Magnifier
+        \item MediaController
+        \item MultiAutoCompleteTextView
+        \item NumberPicker
+        \item OverScroller
+        \item PopupMenu
+        \item PopupWindow
+        \item ProgressBar
+        \item QuickContactBadge
+        \item RadioButton
+        \item RadioGroup
+        \item RatingBar
+        \item RelativeLayout
+        \item RemoteViews
+        \item RemoteViewsService
+        \item ResourceCursorAdapter
+        \item ResourceCursorTreeAdapter
+        \item Scroller
+        \item ScrollView
+        \item SearchView
+        \item SectionIndexer
+        \item SeekBar
+        \item ShareActionProvider
+        \item SimpleAdapter
+        \item SimpleCursorAdapter
+        \item SimpleCursorTreeAdapter
+        \item SimpleExpandableListAdapter
+        \item SlidingDrawer
+        \item Space
+        \item Spinner
+        \item SpinnerAdapter
+        \item StackView
+        \item Switch
+        \item TabHost
+        \item TableLayout
+        \item TableRow
+        \item TabWidget
+        \item TextClock
+        \item TextSwitcher
+        \item TextView
+        \item ThemedSpinnerAdapter
+        \item TimePicker
+        \item Toast
+        \item ToggleButton
+        \item Toolbar
+        \item TwoLineListItem
+        \item VideoView
+        \item ViewAnimator
+        \item ViewFlipper
+        \item ViewSwitcher
+        \item WrapperListAdapter
+        \item ZoomButton
+        \item ZoomButtonsController
+        \item ZoomControls
+	\end{itemize}
 \end{document}
