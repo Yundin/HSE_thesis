@@ -37,8 +37,8 @@
 
         Задачи:
         \begin{itemize}
-            \item Анализ;
-            \item Выбор методологии измерения;
+            \item Анализ существующих исследований;
+            \item Выбор инструментов для измерения энергопотребления;
             \item Сбор данных;
             \item Создание библиотеки;
         \end{itemize}
@@ -73,6 +73,13 @@
         \begin{center}
             \includegraphics[width=0.8\linewidth]{test_comparation}
         \end{center}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Разработанные инструменты}
+        \textbf{activity\_estimation.sh} --- Управляет процессом тестирования.~\\
+        \textbf{filter\_bat.py} --- Собирает из отчёта батареи данные по тестируемому приложению.~\\
+        \textbf{median.py} --- Вычисляет медианное значение измерений.~\\
+        \textbf{chart.py} --- Сортирует результаты и строит диаграмму.
     \end{frame}
     \begin{frame}
         \frametitle{Результаты измерений}
@@ -115,6 +122,29 @@
     \end{frame}
     \begin{frame}
         \frametitle{Библиотека}
+        \framesubtitle{База данных}
+        \begin{itemize}
+            \item TextSwitcher --- ImageSwitcher
+            \item ImageSwitcher --- ToggleButton
+            \item ToggleButton --- CheckedTextView
+            \item CheckedTextView --- View with background
+        \end{itemize}~\\
+        TextSwitcher --> ImageSwitcher --> ToggleButton --> CheckedTextView --> View with background
+    \end{frame}
+    \begin{frame}
+        \frametitle{Библиотека}
+        \framesubtitle{База данных}
+        \begin{multicols}{2}
+            \centering
+            \includegraphics[width=0.75\linewidth]{switcher}
+
+            \columnbreak
+            \centering
+            \includegraphics[width=0.75\linewidth]{view}
+        \end{multicols}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Библиотека}
         \framesubtitle{Проектирование}
         \includegraphics[width=\linewidth]{uml_interfaces}
     \end{frame}
@@ -142,6 +172,7 @@
         В дальнейших исследованиях работа может быть расширена следующим образом:
         \begin{itemize}
             \item Увеличено количество проводимых измерений; 
+            \item Проведены измерения с помощью Monsoon Power Monitor;
             \item Виджеты во время тестирования могут перерисовываться вызовом метода invalidate;
             \item Может быть сымитировано пользовательское взаимодействие с устройством.
         \end{itemize}
